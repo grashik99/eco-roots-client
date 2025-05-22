@@ -1,11 +1,13 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Links from "./Links";
 import logo from "../../public/fav.png";
 import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
+  const navigate = useNavigate()
+  const { user, logOut, setUser } = use(AuthContext);
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -75,7 +77,7 @@ const Navbar = () => {
                   <Link to='/my-profile'>Profile</Link>
                 </li>
                 <li>
-                  <a onClick={logOut}>Logout</a>
+                  <a onClick={()=>{logOut(); navigate('/')}}>Logout</a>
                 </li>
               </ul>
             </div>

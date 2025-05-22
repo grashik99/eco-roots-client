@@ -15,6 +15,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -28,7 +29,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const logOut = () => {
-        return signOut(auth);   
+        return signOut(auth);  
     };
 
   useEffect(() => {
