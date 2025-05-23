@@ -1,5 +1,6 @@
 import Mistakes from "../components/Mistakes";
 import NewPlants from "../components/NewPlants";
+import PlantCareTipsSection from "../components/PlantCareTipsSection";
 import Slider from "../components/Slider";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <Slider></Slider>
       <NewPlants></NewPlants>
       <Mistakes></Mistakes>
+      <PlantCareTipsSection></PlantCareTipsSection>
     </div>
   );
 };
