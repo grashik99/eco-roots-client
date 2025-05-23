@@ -54,7 +54,7 @@ const Register = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              navigate("/my-plants");
+              navigate("/");
             });
         })
         .catch((error) => {
