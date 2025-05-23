@@ -3,6 +3,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { FaPenRuler } from "react-icons/fa6";
 import Loading from "./Loading";
 import { getAuth, sendEmailVerification } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const MyProfile = () => {
   const { user, updateUser, loading, setLoading } = use(AuthContext);
@@ -18,7 +19,10 @@ const MyProfile = () => {
     };
     updateUser({ displayName: name, photoURL: photo })
       .then(() => {
-        // console.log("Profile updated", user);
+        Swal.fire({
+          icon: "success",
+          title: "Update successful",
+        });
         fetch("http://localhost:3000/plants/", {
           method: "PATCH",
           headers: {
@@ -47,6 +51,10 @@ const MyProfile = () => {
         setLoading(false);
       })
       .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: `${error.message}`,
+        });
       });
   };
 
@@ -54,11 +62,16 @@ const MyProfile = () => {
     const auth = getAuth();
     sendEmailVerification(auth.currentUser)
       .then(() => {
-        alert("Email verification sent!");
+        Swal.fire({
+          icon: "success",
+          title: "Email verification sent!",
+        });
       })
       .catch((error) => {
-        console.error("Verification failed:", error);
-        alert("Failed to send email verification.");
+        Swal.fire({
+          icon: "error",
+          title: `${error.message}`,
+        });
       });
   };
 

@@ -12,7 +12,7 @@ const Slider = () => {
             <img
               src={plant.image}
               alt={plant.name}
-              className="w-full h-[400px] object-cover rounded-lg"
+              className="w-full h-[500px] object-cover rounded-lg"
             />
             <Link to={`/view-details/${plant._id}`}>
               <p className="legend ">

@@ -4,6 +4,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
@@ -22,13 +23,20 @@ const LogIn = () => {
     logIn(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "Login successful",
+          text: `${user.displayName}`,
+        });
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorMessage}`,
+        });
       });
   };
 
@@ -37,6 +45,11 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: `Login Successful ${user.displayName}`,
+        });
         navigate(from, { replace: true });
         const userInfo = {
           name: user.displayName,
@@ -52,9 +65,12 @@ const LogIn = () => {
         });
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorMessage}`,
+        });
       });
   };
 
@@ -62,7 +78,6 @@ const LogIn = () => {
     const emailInput = document.getElementById("email");
     if (emailInput && emailInput.value) {
       const email = emailInput.value;
-      console.log("Email:", email);
 
       const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       if (isEmail) {
@@ -70,18 +85,34 @@ const LogIn = () => {
         forgetPassword(email)
           .then(() => {
             console.log("Password reset email sent!");
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Password reset email sent!",
+            });
             emailInput.value = "";
-            // ..
           })
           .catch((error) => {
             const errorMessage = error.message;
-            // ..
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${errorMessage}`,
+            });
           });
       } else {
-        console.log("Invalid email format");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Invalid email format",
+        });
       }
     } else {
-      console.log("Email input not found or empty");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Email input not found or empty",
+      });
     }
   };
 

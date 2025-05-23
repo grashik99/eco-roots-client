@@ -2,19 +2,25 @@ import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useLoaderData, useNavigate } from "react-router";
 import Loading from "./Loading";
+import Swal from "sweetalert2";
 
 const UpdatePlant = () => {
   const data = useLoaderData();
   console.log(data);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { user, loading } = use(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (data.userEmail !== user.email) {
-      return alert("You are not Authorized to Update"), navigate('/my-plants');
+      Swal.fire({
+        icon: "error",
+        title: "You are not Authorized to Update",
+      });
+      navigate("/my-plants");
+      return;
     }
     const form = e.target;
 
@@ -41,14 +47,20 @@ const UpdatePlant = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.modifiedCount){
-            form.reset()
-            navigate('/my-plants')
-            alert('success update')
-        }else{
-            alert('You dont entre any thid')
+        console.log(data)
+        if (data.modifiedCount === 1) {
+          form.reset();
+          navigate("/my-plants");
+          Swal.fire({
+            icon: "success",
+            title: "Update successful",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "You don't enter any update",
+          });
         }
-        console.log(data);
       });
   };
 

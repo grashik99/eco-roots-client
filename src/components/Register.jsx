@@ -1,12 +1,13 @@
 import { use, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [passwordError, setPasswordError] = useState([]);
   const { createUser, updateUser, setUser } = use(AuthContext);
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const validatePassword = (value) => {
     const newErrors = [];
@@ -33,28 +34,35 @@ const navigate = useNavigate();
       createUser(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("User created:", user);
+          Swal.fire({
+            icon: "success",
+            title: "Registration successful",
+          });
           setUser(user);
           updateUser({ displayName: name, photoURL: photo });
           const userInfo = {
             name,
             photo,
-            email
-          }
-          fetch('http://localhost:3000/users',{
-            method: 'POST',
+            email,
+          };
+          fetch("http://localhost:3000/users", {
+            method: "POST",
             headers: {
-                'content-type' : 'application/json'
+              "content-type": "application/json",
             },
-            body: JSON.stringify(userInfo)
+            body: JSON.stringify(userInfo),
           })
-          .then(res => res.json())
-          .then(data => {
-            navigate('/my-plants')
-          })
+            .then((res) => res.json())
+            .then((data) => {
+              navigate("/my-plants");
+            });
         })
         .catch((error) => {
-          console.log("Error:", error.code, error.message);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error.message}`,
+          });
         });
     }
   };
@@ -118,7 +126,12 @@ const navigate = useNavigate();
             </div>
 
             <div>
-              <p className="mt-4">Already have an Account? <Link className="text-blue-400" to='/login'>Login</Link></p>
+              <p className="mt-4">
+                Already have an Account?{" "}
+                <Link className="text-blue-400" to="/login">
+                  Login
+                </Link>
+              </p>
             </div>
 
             {passwordError.length > 0 && (

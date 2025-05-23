@@ -2,6 +2,7 @@ import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router";
 import Loading from "./Loading";
+import Swal from "sweetalert2";
 
 const AddPlant = () => {
   const navigate = useNavigate("");
@@ -35,8 +36,14 @@ const AddPlant = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        form.reset();
-        navigate("/my-plants");
+        if (data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Plant added successful",
+          });
+          form.reset();
+          navigate("/my-plants");
+        }
       });
   };
 
