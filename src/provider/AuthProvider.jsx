@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -32,10 +33,14 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const forgetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false)
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -51,6 +56,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     loading,
     setLoading,
+    forgetPassword,
   };
   return <AuthContext value={authData}>{children}</AuthContext>;
 };

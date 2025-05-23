@@ -12,7 +12,7 @@ const LogIn = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-  const { logIn } = use(AuthContext);
+  const { logIn, forgetPassword } = use(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -46,6 +46,34 @@ const LogIn = () => {
       });
   };
 
+  const handleForget = () => {
+    const emailInput = document.getElementById("email");
+    if (emailInput && emailInput.value) {
+      const email = emailInput.value;
+      console.log("Email:", email);
+
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (isEmail) {
+        console.log("Valid email");
+        forgetPassword(email)
+          .then(() => {
+            console.log("Password reset email sent!");
+            emailInput.value = "";
+            // ..
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
+      } else {
+        console.log("Invalid email format");
+      }
+    } else {
+      console.log("Email input not found or empty");
+    }
+  };
+
   return (
     <div className="hero min-h-[60vh] bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -63,6 +91,7 @@ const LogIn = () => {
                 className="input input-bordered"
                 name="email"
                 required
+                id="email"
               />
             </div>
 
@@ -95,9 +124,14 @@ const LogIn = () => {
           <div className="flex justify-center mb-4">
             <button
               onClick={loginWithGoogle}
-              className="btn btn-success text-white md:absolute bottom-9.5 right-10 text-lg"
+              className="btn btn-success text-white md:absolute bottom-20 right-10 text-lg"
             >
               <FcGoogle className="text-2xl"></FcGoogle> Google Loging
+            </button>
+          </div>
+          <div className="w-full text-center">
+            <button className="mb-4" onClick={handleForget}>
+              Forget Password?
             </button>
           </div>
         </div>

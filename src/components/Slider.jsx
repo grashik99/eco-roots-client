@@ -4,7 +4,6 @@ import { Link, useLoaderData } from "react-router";
 
 const Slider = () => {
   const data = useLoaderData();
-  console.log(data);
   return (
     <div className=" mx-auto">
       <Carousel showThumbs={false} autoPlay infiniteLoop>

@@ -2,25 +2,52 @@ import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaPenRuler } from "react-icons/fa6";
 import Loading from "./Loading";
+import { getAuth, sendEmailVerification } from "firebase/auth";
 
 const MyProfile = () => {
   const { user, updateUser, loading, setLoading } = use(AuthContext);
-
   const handleUpdate = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const form = e.target;
     const name = form.name.value;
     const photo = form.photo.value;
+    const info = {
+      email: user.email,
+      name,
+    };
     updateUser({ displayName: name, photoURL: photo })
       .then(() => {
         // console.log("Profile updated", user);
+        fetch("http://localhost:3000/plants/", {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(info),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         const modalCheckbox = document.getElementById("my_modal_7");
         if (modalCheckbox) modalCheckbox.checked = false;
-        setLoading(false)
+        setLoading(false);
       })
       .catch((error) => {
         // console.error("Error updating profile:", error.message);
+      });
+  };
+
+  const verify = () => {
+    const auth = getAuth();
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        alert("Email verification sent!");
+      })
+      .catch((error) => {
+        console.error("Verification failed:", error);
+        alert("Failed to send email verification.");
       });
   };
 
@@ -50,9 +77,26 @@ const MyProfile = () => {
               <FaPenRuler />
             </label>
           </div>
-          <h2 className="text-xl font-semibold">Name : {user?.displayName || "No Name set Yet"}</h2>
+          <h2 className="text-xl font-semibold">
+            Name : {user?.displayName || "No Name set Yet"}
+          </h2>
           <h2 className="text-[#6f6f6f]">Email : {user?.email}</h2>
-          <h2 className={user?.emailVerified ? "text-green-500 text-xl font-bold": "text-red-300 text-xl font-bold"}>Verified : {user?.emailVerified ? "Yes" : "No"}</h2>
+          <h2
+            className={
+              user?.emailVerified
+                ? "text-green-500 text-xl font-bold"
+                : "text-red-300 text-xl font-bold"
+            }
+          >
+            Verified Status : {user?.emailVerified ? "Yes" : "No"}
+          </h2>
+          {!user.emailVerified ? (
+            <button className="btn btn-warning text-white" onClick={verify}>
+              Completed verification
+            </button>
+          ) : (
+            ""
+          )}
 
           <input type="checkbox" id="my_modal_7" className="modal-toggle" />
           <div className="modal" role="dialog">
@@ -87,6 +131,7 @@ const MyProfile = () => {
                           placeholder="Photo URL"
                           className="input input-bordered"
                           name="photo"
+                          defaultValue={user?.photoURL}
                         />
                       </div>
 

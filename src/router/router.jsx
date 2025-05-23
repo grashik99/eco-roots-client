@@ -11,11 +11,13 @@ import MyPlants from "../components/MyPlants";
 import Loading from "../components/Loading";
 import PlantDetails from "../components/PlantDetails";
 import UpdatePlant from "../components/UpdatePlant";
+import Error from "../pages/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: HomeLayouts,
+    errorElement: <Error/>,
     children: [
       {
         index: true,

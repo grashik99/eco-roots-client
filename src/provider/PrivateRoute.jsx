@@ -8,11 +8,11 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return Loading;
+    return <Loading />;
   }
   if (user && user.email) {
     return children;
   }
-  return <Navigate to="/login" state={{from: location}} replace></Navigate>;
+  return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 export default PrivateRoute;
