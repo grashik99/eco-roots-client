@@ -2,7 +2,8 @@ import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { FcGoogle } from "react-icons/fc";
 
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
@@ -46,7 +47,7 @@ const LogIn = () => {
     <div className="hero min-h-[60vh] bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card flex-shrink-0 w-full md:w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleLogin} className="card-body">
+          <form onSubmit={handleLogin} className="card-body relative">
             <h1 className="text-2xl font-bold text-center">Login</h1>
 
             <div className="form-control">
@@ -75,13 +76,17 @@ const LogIn = () => {
               />
             </div>
 
+            <div>
+              <p className="mt-4">Don't have an Account? <Link className="text-blue-400" to='/register'>Register</Link></p>
+            </div>
+
             <div className="form-control mt-6">
               <button className="btn btn-primary">LogIn</button>
             </div>
           </form>
           <div className="flex justify-center mb-4">
-            <button onClick={loginWithGoogle} className="btn">
-              Google
+            <button onClick={loginWithGoogle} className="btn btn-success text-white md:absolute bottom-9.5 right-10 text-lg">
+              <FcGoogle className="text-2xl"></FcGoogle> Google Loging
             </button>
           </div>
         </div>

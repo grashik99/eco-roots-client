@@ -6,12 +6,12 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user, logOut, loading, setLoading } = use(AuthContext);
+  const { user, logOut, loading } = use(AuthContext);
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown mr-2">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,17 +31,17 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="space-y-1 menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <Links />
           </ul>
         </div>
-        <a className="btn text-xl">
+        <Link to="/" className="btn text-xl">
           Eco Roots <img src={logo} className="w-10" />
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal space-x-2">
           <Links />
         </ul>
       </div>

@@ -1,9 +1,12 @@
 import { use, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { Link, useNavigate } from "react-router";
 
 const Register = () => {
   const [passwordError, setPasswordError] = useState([]);
   const { createUser, updateUser, setUser } = use(AuthContext);
+
+const navigate = useNavigate();
 
   const validatePassword = (value) => {
     const newErrors = [];
@@ -46,7 +49,9 @@ const Register = () => {
             body: JSON.stringify(userInfo)
           })
           .then(res => res.json())
-          .then(data => console.log(data))
+          .then(data => {
+            navigate('/my-plants')
+          })
         })
         .catch((error) => {
           console.log("Error:", error.code, error.message);
@@ -110,6 +115,10 @@ const Register = () => {
                 onKeyUp={(e) => validatePassword(e.target.value)}
                 required
               />
+            </div>
+
+            <div>
+              <p className="mt-4">Already have an Account? <Link className="text-blue-400" to='/login'>Login</Link></p>
             </div>
 
             {passwordError.length > 0 && (
