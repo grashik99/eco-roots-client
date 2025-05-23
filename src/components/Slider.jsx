@@ -5,7 +5,7 @@ import { Link, useLoaderData } from "react-router";
 const Slider = () => {
   const data = useLoaderData();
   return (
-    <div className=" mx-auto">
+    <div className="my-4">
       <Carousel showThumbs={false} autoPlay infiniteLoop>
         {data.map((plant) => (
           <div key={plant._id}>

@@ -80,7 +80,7 @@ const Navbar = () => {
                 <li>
                   <a
                     onClick={() => {
-                      logOut(), navigate("/all-plants");
+                      logOut(), navigate("/");
                     }}
                   >
                     Logout

@@ -2,7 +2,6 @@ import { use } from "react";
 import { Link, useLoaderData } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import PlantCard from "./PlantCard";
-import Loading from "./Loading";
 
 const MyPlants = () => {
   const { user } = use(AuthContext);

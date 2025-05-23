@@ -30,12 +30,23 @@ const MyProfile = () => {
           .then((data) => {
             console.log(data);
           });
+        // Update user
+        fetch("http://localhost:3000/users/", {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(info),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
         const modalCheckbox = document.getElementById("my_modal_7");
         if (modalCheckbox) modalCheckbox.checked = false;
         setLoading(false);
       })
       .catch((error) => {
-        // console.error("Error updating profile:", error.message);
       });
   };
 

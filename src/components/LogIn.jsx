@@ -38,6 +38,18 @@ const LogIn = () => {
         const user = result.user;
         console.log(user);
         navigate(from, { replace: true });
+        const userInfo = {
+          name: user.displayName,
+          photo: user.photoURL,
+          email: user.email,
+        };
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -62,7 +74,6 @@ const LogIn = () => {
             // ..
           })
           .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
             // ..
           });
