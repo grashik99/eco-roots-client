@@ -23,7 +23,7 @@ const MyProfile = () => {
           icon: "success",
           title: "Update successful",
         });
-        fetch("http://localhost:3000/plants/", {
+        fetch("https://eco-roots-server.vercel.app/plants/", {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -35,7 +35,7 @@ const MyProfile = () => {
             console.log(data);
           });
         // Update user
-        fetch("http://localhost:3000/users/", {
+        fetch("https://eco-roots-server.vercel.app/users/", {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

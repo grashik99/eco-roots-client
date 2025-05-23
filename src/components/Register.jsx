@@ -45,7 +45,7 @@ const Register = () => {
             photo,
             email,
           };
-          fetch("http://localhost:3000/users", {
+          fetch("https://eco-roots-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

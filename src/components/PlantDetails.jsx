@@ -23,7 +23,7 @@ const PlantDetails = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           console.log("delete");
-          fetch("http://localhost:3000/plants", {
+          fetch("https://eco-roots-server.vercel.app/plants", {
             method: "DELETE",
             headers: {
               "content-type": "application/json",

@@ -22,13 +22,13 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch("http://localhost:3000/plants"),
+        loader: () => fetch("https://eco-roots-server.vercel.app/plants"),
         hydrateFallbackElement: <Loading />,
       },
       {
         path: "/all-plants",
         Component: AllPlants,
-        loader: () => fetch("http://localhost:3000/plants"),
+        loader: () => fetch("https://eco-roots-server.vercel.app/plants"),
         hydrateFallbackElement: <Loading />,
       },
       {
@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/plants/${params.id}`),
+          fetch(`https://eco-roots-server.vercel.app/plants/${params.id}`),
         hydrateFallbackElement: <Loading />,
       },
       {
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
             <MyPlants />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:3000/plants"),
+        loader: () => fetch("https://eco-roots-server.vercel.app/plants"),
         hydrateFallbackElement: <Loading />,
       },
       {
@@ -68,7 +68,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/plants/${params.id}`),
+          fetch(`https://eco-roots-server.vercel.app/plants/${params.id}`),
         hydrateFallbackElement: <Loading />,
       },
       {

@@ -4,7 +4,7 @@ import PlantCard from "./PlantCard";
 const NewPlants = () => {
   const [plants, setPlnats] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/plants")
+    fetch("https://eco-roots-server.vercel.app/plants")
       .then((res) => res.json())
       .then((data) => setPlnats(data));
   }, []);

@@ -38,7 +38,7 @@ const UpdatePlant = () => {
       userName: user?.displayName,
     };
 
-    fetch(`http://localhost:3000/plants/${data._id}`, {
+    fetch(`https://eco-roots-server.vercel.app/plants/${data._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

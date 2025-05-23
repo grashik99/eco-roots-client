@@ -27,7 +27,7 @@ const AddPlant = () => {
       userName: user?.displayName,
     };
 
-    fetch("http://localhost:3000/plants", {
+    fetch("https://eco-roots-server.vercel.app/plants", {
       method: "POST",
       headers: {
         "content-type": "application/json",
