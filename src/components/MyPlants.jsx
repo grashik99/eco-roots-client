@@ -11,7 +11,7 @@ const MyPlants = () => {
   return (
     <div>
       {addedByUser.length > 0 ? (
-        <div className="md:grid grid-cols-2">
+        <div className="md:grid grid-cols-3">
           {addedByUser.map((plant) => (
             <PlantCard key={plant._id} plant={plant}></PlantCard>
           ))}

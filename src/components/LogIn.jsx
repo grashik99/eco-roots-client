@@ -2,13 +2,16 @@ import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 const LogIn = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
   const { logIn } = use(AuthContext);
 
   const handleLogin = (e) => {
@@ -20,7 +23,7 @@ const LogIn = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        navigate('/')
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -34,7 +37,7 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/')
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -77,7 +80,12 @@ const LogIn = () => {
             </div>
 
             <div>
-              <p className="mt-4">Don't have an Account? <Link className="text-blue-400" to='/register'>Register</Link></p>
+              <p className="mt-4">
+                Don't have an Account?{" "}
+                <Link className="text-blue-400" to="/register">
+                  Register
+                </Link>
+              </p>
             </div>
 
             <div className="form-control mt-6">
@@ -85,7 +93,10 @@ const LogIn = () => {
             </div>
           </form>
           <div className="flex justify-center mb-4">
-            <button onClick={loginWithGoogle} className="btn btn-success text-white md:absolute bottom-9.5 right-10 text-lg">
+            <button
+              onClick={loginWithGoogle}
+              className="btn btn-success text-white md:absolute bottom-9.5 right-10 text-lg"
+            >
               <FcGoogle className="text-2xl"></FcGoogle> Google Loging
             </button>
           </div>

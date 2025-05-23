@@ -1,4 +1,10 @@
+import Slider from "../components/Slider";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div className="min-h-[50vh]">
+      <Slider></Slider>
+    </div>
+  );
 };
 export default Home;
