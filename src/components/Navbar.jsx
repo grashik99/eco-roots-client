@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router";
 import Links from "./Links";
-import logo from "../../public/fav.png";
+import logo from "../assets/fav.png";
 import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaExchangeAlt } from "react-icons/fa";
 import { IoIosColorWand } from "react-icons/io";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -51,10 +52,16 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal space-x-2">
           <Links />
-          <button onClick={toggleTheme} className="btn btn-sm">
+          <button
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content="Change Theme"
+            onClick={toggleTheme}
+            className="btn btn-sm"
+          >
             <FaExchangeAlt />
-            <IoIosColorWand />
+            <IoIosColorWand className="text-2xl" />
           </button>
+          <Tooltip id="my-tooltip" />
         </ul>
       </div>
       <div className="navbar-end">
