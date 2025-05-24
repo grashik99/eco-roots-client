@@ -3,10 +3,18 @@ import Links from "./Links";
 import logo from "../../public/fav.png";
 import { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { FaExchangeAlt } from "react-icons/fa";
+import { IoIosColorWand } from "react-icons/io";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logOut, loading } = use(AuthContext);
+
+  const toggleTheme = () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -43,6 +51,10 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal space-x-2">
           <Links />
+          <button onClick={toggleTheme} className="btn btn-sm">
+            <FaExchangeAlt />
+            <IoIosColorWand />
+          </button>
         </ul>
       </div>
       <div className="navbar-end">

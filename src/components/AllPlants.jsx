@@ -37,7 +37,7 @@ const AllPlants = () => {
 
   return (
     <div>
-      <div className="my-3 flex items-center space-x-4 row">
+      <div className="my-3 flex items-center space-x-4 justify-end">
         <h1 className="text-2xl font-medium">Sort By:</h1>
         <button className="btn" onClick={sortByName}>
           Name
