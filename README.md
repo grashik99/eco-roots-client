@@ -61,25 +61,24 @@ https://eco-roots-ed2f9.web.app/
 
 ## 🛠️ Getting Started – Run Locally
 
-# 1️⃣ Clone the repository:
+## 1️⃣ Clone the repository:
 
 git clone https://github.com/grashik99/eco-roots-client.git
 cd eco-roots-client
 
-# 2️⃣ Install dependencies:
+## 2️⃣ Install dependencies:
 
 npm install
 
-# 3️⃣ Set up Firebase:
+## 3️⃣ Set up Firebase:
+- VITE_apiKey=your_api_key
+- VITE_authDomain=your_project.firebaseapp.com
+- VITE_projectId=your_project_id
+- VITE_storageBucket=your_project.appspot.com
+- VITE_messagingSenderId=your_messaging_sender_id
+- VITE_appId=your_app_id
 
--VITE_apiKey=your_api_key
--VITE_authDomain=your_project.firebaseapp.com
--VITE_projectId=your_project_id
--VITE_storageBucket=your_project.appspot.com
--VITE_messagingSenderId=your_messaging_sender_id
--VITE_appId=your_app_id
-
-# 4️⃣ Start the development server:
+## 4️⃣ Start the development server:
 
 npm run dev
 
