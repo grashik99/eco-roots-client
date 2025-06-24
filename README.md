@@ -72,14 +72,14 @@ npm install
 
 # 3️⃣ Set up Firebase:
 
-VITE_apiKey=your_api_key
-VITE_authDomain=your_project.firebaseapp.com
-VITE_projectId=your_project_id
-VITE_storageBucket=your_project.appspot.com
-VITE_messagingSenderId=your_messaging_sender_id
-VITE_appId=your_app_id
+-VITE_apiKey=your_api_key
+-VITE_authDomain=your_project.firebaseapp.com
+-VITE_projectId=your_project_id
+-VITE_storageBucket=your_project.appspot.com
+-VITE_messagingSenderId=your_messaging_sender_id
+-VITE_appId=your_app_id
 
-4️⃣ Start the development server:
+# 4️⃣ Start the development server:
 
 npm run dev
 
