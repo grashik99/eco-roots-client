@@ -56,5 +56,5 @@ This project allows users to:
 
 ## 🔗 Live Site
 https://eco-roots-ed2f9.web.app/
-
-#
+---
+## 🛠️ Getting Started – Run Locally
