@@ -50,3 +50,6 @@ This project allows users to:
   "axios": "^1.x",
   "lottie-react": "^2.x"
 }
+```
+
+##
