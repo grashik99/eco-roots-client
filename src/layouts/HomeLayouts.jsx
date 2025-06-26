@@ -4,8 +4,10 @@ import Footer from "../components/Footer";
 
 const HomeLayouts = () => {
   return (
-    <div className="md:w-11/12 mx-auto">
-      <Navbar />
+    <div className="max-w-[1920px] mx-auto">
+      <div className="mt-4">
+        <Navbar />
+      </div>
       <div className="min-h-[53vh]">
         <Outlet />
       </div>

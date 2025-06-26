@@ -12,12 +12,13 @@ import Loading from "../components/Loading";
 import PlantDetails from "../components/PlantDetails";
 import UpdatePlant from "../components/UpdatePlant";
 import Error from "../pages/Error";
+import Deshboard from "../components/Deshboard";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: HomeLayouts,
-    errorElement: <Error/>,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -43,24 +44,6 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <Loading />,
       },
       {
-        path: "/my-plants",
-        element: (
-          <PrivateRoute>
-            <MyPlants />
-          </PrivateRoute>
-        ),
-        loader: () => fetch("https://eco-roots-server.vercel.app/plants"),
-        hydrateFallbackElement: <Loading />,
-      },
-      {
-        path: "/add-plants",
-        element: (
-          <PrivateRoute>
-            <AddPlant />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "update-plant/:id",
         element: (
           <PrivateRoute>
@@ -79,9 +62,42 @@ export const router = createBrowserRouter([
         path: "/login",
         Component: LogIn,
       },
+    ],
+  },
+  {
+    path: "/deshboard",
+    element: (
+      <PrivateRoute>
+        <Deshboard></Deshboard>
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path: "/my-profile",
-        Component: MyProfile,
+        path: "/deshboard/my-plants",
+        element: (
+          <PrivateRoute>
+            <MyPlants />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("https://eco-roots-server.vercel.app/plants"),
+        hydrateFallbackElement: <Loading />,
+      },
+      {
+        path: "/deshboard/add-plant",
+        element: (
+          <PrivateRoute>
+            <AddPlant />
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/deshboard/my-profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
