@@ -92,7 +92,15 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "/deshboard/my-profile",
+        path: "/deshboard/",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/deshboard/myProfile",
         element: (
           <PrivateRoute>
             <MyProfile />

@@ -49,7 +49,7 @@ const AllPlants = () => {
          Care Level
         </button>
       </div>
-      <div className="md:grid grid-cols-3">
+      <div className="md:grid grid-cols-3 lg:grid-cols-4">
         {sortPlants.map((plant) => (
           <PlantCard key={plant._id} plant={plant}></PlantCard>
         ))}

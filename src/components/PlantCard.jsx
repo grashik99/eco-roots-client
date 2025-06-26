@@ -18,9 +18,6 @@ const PlantCard = ({ plant }) => {
           <p>
             <strong>Watering:</strong> {plant.wateringFrequency} day(s)
           </p>
-          <p>
-            <strong>Watering:</strong> {plant.nextWatering}
-          </p>
         </div>
         <Link to={`/view-details/${plant._id}`}>
           <button className="btn btn-success text-white w-full">

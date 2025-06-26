@@ -12,14 +12,16 @@ const Mistakes = () => {
 
   return (
     <div className="p-6 my-6 bg-green-50 rounded-2xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-green-800">
-        Top Plant Care Mistakes
-      </h2>
-      <ul className="list-disc list-inside space-y-2 text-green-900">
-        {mistake.map((mistake, index) => (
-          <li key={index}>{mistake}</li>
-        ))}
-      </ul>
+      <div className="w-10/12 mx-auto">
+        <h2 className="text-2xl font-bold mb-4 text-green-800">
+          Top Plant Care Mistakes
+        </h2>
+        <ul className="list-disc list-inside space-y-2 text-green-900">
+          {mistake.map((mistake, index) => (
+            <li key={index}>{mistake}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

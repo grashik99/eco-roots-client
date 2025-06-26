@@ -12,7 +12,7 @@ const Deshboard = () => {
         <aside
           className={`md:col-span-2 min-h-screen w-3/4 md:w-full md:flex bg-gray-800 ${
             aside && "hidden"
-          }`}
+          } absolute top-16 md:top-0 md:relative z-10`}
         >
           <Aside />
         </aside>
@@ -24,3 +24,11 @@ const Deshboard = () => {
   );
 };
 export default Deshboard;
+
+
+
+// className={`
+//             md:col-span-2 md:static md:block
+//             fixed top-0 left-0 z-40 h-full w-3/4 bg-gray-800 transition-transform duration-300
+//             ${aside ? 'translate-x-0' : '-translate-x-full'}
+//           `}
