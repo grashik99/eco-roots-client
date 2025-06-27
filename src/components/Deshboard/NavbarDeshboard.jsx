@@ -4,6 +4,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import logo from "../../assets/Logo.png";
 
 const NavbarDeshboard = ({ setAside, aside }) => {
+  const currentTheme = document.documentElement.getAttribute("data-theme");
   const { user, logOut } = use(AuthContext);
   const navigate = useNavigate();
   return (
@@ -18,7 +19,7 @@ const NavbarDeshboard = ({ setAside, aside }) => {
           </Link>
         </div>
         <div className="navbar-center hidden md:flex">
-          <label className="input text-black rounded-full">
+          <label className={`input rounded-full ${currentTheme ==="light" && 'text-black'}`}>
             <svg
               className="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"

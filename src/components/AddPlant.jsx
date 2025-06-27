@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const AddPlant = () => {
   const navigate = useNavigate("");
+  const currentTheme = document.documentElement.getAttribute("data-theme");
 
   const { user, loading } = use(AuthContext);
 
@@ -83,7 +84,7 @@ const AddPlant = () => {
             <label className="block mb-1 font-medium">Category</label>
             <select
               name="category"
-              className="w-full border rounded px-3 py-2"
+              className={`w-full border rounded px-3 py-2 ${currentTheme === "dark" && 'bg-black'}`}
               required
             >
               <option value="Succulent">Succulent</option>
@@ -106,7 +107,7 @@ const AddPlant = () => {
             <label className="block mb-1 font-medium">Care Level</label>
             <select
               name="careLevel"
-              className="w-full border rounded px-3 py-2"
+              className={`w-full border rounded px-3 py-2 ${currentTheme === "dark" && 'bg-black'}`}
               required
             >
               <option value="Easy">Easy</option>
