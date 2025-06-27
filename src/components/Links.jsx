@@ -15,6 +15,12 @@ const Links = () => {
       <li>
         <NavLink to="/all-plants">All Plants</NavLink>
       </li>
+      <li>
+        <NavLink to="/aboutUs">About Us</NavLink>
+      </li>
+      <li>
+        <NavLink to="/support">Support</NavLink>
+      </li>
       {user?.email && (
         <>
           <li>

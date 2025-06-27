@@ -54,7 +54,7 @@ const AddPlant = () => {
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="max-w-xl mx-auto p-6 bg-green-100 shadow-lg rounded-xl space-y-4 md:my-4"
+          className="max-w-xl mx-auto p-6 shadow-lg rounded-xl space-y-4 md:my-4"
         >
           <h2 className="text-2xl font-bold mb-4">Add New Plant</h2>
 

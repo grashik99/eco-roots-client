@@ -13,6 +13,8 @@ import PlantDetails from "../components/PlantDetails";
 import UpdatePlant from "../components/UpdatePlant";
 import Error from "../pages/Error";
 import Deshboard from "../components/Deshboard";
+import AboutUs from "../components/AboutUs";
+import Support from "../components/Support";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         Component: LogIn,
+      },
+      {
+        path: "/aboutUs",
+        Component: AboutUs,
+      },
+      {
+        path: "/support",
+        Component: Support,
       },
     ],
   },
